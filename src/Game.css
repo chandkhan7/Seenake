@@ -1,0 +1,227 @@
+/* Game Container */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  overflow: hidden;
+  perspective: 1500px; /* Enhanced 3D perspective */
+}
+
+/* Title */
+.game-title {
+  font-size: 4.5rem;
+  margin-bottom: 1.5rem;
+  color: #00FF00;
+  text-shadow: 3px 3px 15px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 1);
+  animation: titleAnimation 1.5s ease-out forwards;
+  transform: rotateX(15deg); /* Tilted extreme 3D effect */
+  transform-origin: center center;
+  letter-spacing: 5px;
+}
+
+/* Title Animation */
+@keyframes titleAnimation {
+  0% {
+    transform: scale(0.5) rotateX(45deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+/* Score & Game Over Message */
+.game-status {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  color: #ff4444;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.9), 0 0 20px rgba(255, 0, 0, 0.8);
+  animation: fadeInGameOver 1s ease-out forwards;
+}
+
+.game-over {
+  font-size: 2rem;
+  color: #ff4444;
+  text-transform: uppercase;
+  font-weight: bold;
+  animation: shake 0.3s ease-out infinite alternate, glowing 2s ease-out infinite;
+}
+
+/* Game Over Shake Animation */
+@keyframes shake {
+  0% {
+    transform: translateX(-5px) rotateY(15deg);
+  }
+  50% {
+    transform: translateX(5px) rotateY(-15deg);
+  }
+  100% {
+    transform: translateX(-5px) rotateY(15deg);
+  }
+}
+
+/* Glowing Game Over Animation */
+@keyframes glowing {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 1), 0 0 20px rgba(255, 0, 0, 0.9);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 1);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 1), 0 0 20px rgba(255, 0, 0, 0.9);
+  }
+}
+
+/* Game Board */
+.game-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  position: relative;
+  animation: fadeIn 1s ease-out forwards;
+  transform: rotateX(10deg);
+}
+
+/* Board Fade-In Animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 45px);
+  grid-template-rows: repeat(10, 45px);
+  gap: 2px;
+  perspective: 500px; /* Added depth to grid for extreme 3D look */
+}
+
+.cell {
+  width: 45px;
+  height: 45px;
+  background-color: #333;
+  transition: all 0.2s ease-out;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  transform: translateZ(0); /* Depth for 3D */
+}
+
+/* Snake */
+.snake {
+  background-color: #00FF00;
+  animation: snakeMovement 0.2s ease-out;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.9);
+  transform: translateZ(5px) rotateY(15deg); /* Snake with tilt effect */
+}
+
+/* Snake Movement Animation */
+@keyframes snakeMovement {
+  0% {
+    transform: scale(0.9) translateZ(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateZ(5px) rotateY(15deg);
+    opacity: 1;
+  }
+}
+
+/* Food */
+.food {
+  background-color: #FF6347;
+  box-shadow: 0 0 15px rgba(255, 99, 71, 0.6), 0 0 30px rgba(255, 99, 71, 1);
+  animation: foodBounce 1s ease-out infinite alternate;
+  transform: translateZ(5px); /* Depth */
+}
+
+/* Food Bounce Animation */
+@keyframes foodBounce {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(15deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Obstacle */
+.obstacle {
+  background-color: #555;
+  box-shadow: 0 0 10px rgba(85, 85, 85, 0.8), 0 0 30px rgba(85, 85, 85, 0.9);
+  animation: obstaclePulse 2s ease-out infinite alternate;
+  transform: translateZ(3px); /* Depth effect */
+}
+
+/* Obstacle Pulse Animation */
+@keyframes obstaclePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Restart Button */
+.restart-container {
+  margin-top: 2rem;
+}
+
+.restart-button {
+  background-color: #1E90FF;
+  color: #fff;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 6px 12px rgba(0, 0, 255, 0.2);
+  transform: perspective(1000px) rotateX(20deg); /* Extreme button perspective */
+}
+
+.restart-button:hover {
+  background-color: #4682B4;
+  transform: scale(1.2) rotateX(5deg);
+  box-shadow: 0 8px 15px rgba(0, 0, 255, 0.4);
+}
+
+.restart-button:active {
+  transform: scale(1) rotateX(0deg);
+  box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5);
+}
+
+/* Mobile & Responsive */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 3rem;
+  }
+
+  .restart-button {
+    font-size: 1.4rem;
+    padding: 12px 24px;
+  }
+
+  .board {
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
+  }
+}
