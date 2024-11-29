@@ -209,19 +209,498 @@
   box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5);
 }
 
-/* Mobile & Responsive */
+/* Direction Buttons */
+.direction-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.horizontal-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 250px; /* Limit width for horizontal buttons */
+  margin-top: 10px;
+}
+
+.control-button {
+  font-size: 3rem; /* Larger font size for better touch accessibility */
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 20px;
+  margin: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  width: 70px;
+  height: 70px;
+}
+
+.control-button:hover {
+  background-color: #555;
+  transform: translateY(-3px); /* Subtle lift effect */
+}
+
+.control-button:active {
+  background-color: #444;
+  transform: translateY(1px); /* Button presses down slightly */
+}
+
+.control-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 255, 0.6); /* Focus outline for accessibility */
+}
+
+.control-button.up {
+  background-color: #4CAF50; /* Green color for up button */
+}
+
+.control-button.down {
+  background-color: #FF5733; /* Red color for down button */
+}
+
+.control-button.left {
+  background-color: #FF8C00; /* Orange color for left button */
+}
+
+.control-button.right {
+  background-color: #1E90FF; /* Blue color for right button */
+}
+
+/* Mobile-First Design */
 @media (max-width: 768px) {
+  .game-container {
+    padding: 10px;
+  }
+
   .game-title {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
-  .restart-button {
-    font-size: 1.4rem;
-    padding: 12px 24px;
+  .game-status {
+    font-size: 1.2rem;
   }
 
-  .board {
-    grid-template-columns: repeat(10, 35px);
-    grid-template-rows: repeat(10, 35px);
+  .game-board {
+    grid-template-columns: repeat(5, 40px); /* Adjust for smaller screens */
+    grid-template-rows: repeat(5, 40px);
+  }
+
+  .control-button {
+    font-size: 2.5rem; /* Adjust button sizes for smaller screens */
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Larger devices like tablets and desktops */
+@media (min-width: 769px) {
+  .game-title {
+    font-size: 4rem;
+  }
+  
+  .game-status {
+    font-size: 1.8rem;
+  }
+
+  .game-board {
+    grid-template-columns: repeat(10, 45px);
+    grid-template-rows: repeat(10, 45px);
+  }
+}
+/* Game Container */
+.game-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.game-title {
+  font-size: 36px;
+  color: white;
+}
+
+/* Game Status */
+.game-status {
+  margin: 10px 0;
+}
+
+.game-over {
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Game Board */
+.game-board {
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+}
+
+/* Cells */
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #222;
+  border-radius: 4px;
+}
+
+.snake {
+  background-color: green;
+}
+
+.food {
+  background-color: red;
+}
+
+.obstacle {
+  background-color: gray;
+}
+
+/* Restart Button */
+.restart-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.restart-button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background-color: #45a049;
+}
+
+/* Direction Buttons */
+.direction-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.horizontal-buttons {
+  display: flex;
+}
+
+.control-button {
+  background-color: #444;
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.control-button:hover {
+  background-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .game-board {
+    display: block;
+  }
+
+  .control-button {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .horizontal-buttons {
+    flex-direction: column;
+  }
+}
+/* Game Container */
+.game-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.game-title {
+  font-size: 36px;
+  color: white;
+}
+
+/* Game Status */
+.game-status {
+  margin: 10px 0;
+}
+
+.game-over {
+  font-size: 24px;
+  color: red;
+  font-weight: bold;
+}
+
+/* Game Board */
+.game-board {
+  display: flex;
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+}
+
+/* Cells */
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #222;
+  border-radius: 4px;
+}
+
+.snake {
+  background-color: green;
+}
+
+.food {
+  background-color: red;
+}
+
+.obstacle {
+  background-color: gray;
+}
+
+/* Restart Button */
+.restart-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.restart-button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background-color: #45a049;
+}
+
+/* Controller (Directional Buttons) */
+.controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.middle-row {
+  display: flex;
+}
+
+.control-button {
+  background-color: #444;
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.control-button:hover {
+  background-color: #555;
+}
+
+/* Directional Control Button Positioning */
+.up {
+  margin-bottom: 10px;
+}
+
+.left,
+.right {
+  width: 50px;
+}
+
+.left {
+  margin-right: 5px;
+}
+
+.right {
+  margin-left: 5px;
+}
+
+.down {
+  margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .game-board {
+    display: block;
+  }
+
+  .control-button {
+    font-size: 20px;
+    padding: 8px;
+  }
+}
+/* Game Container */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  margin: 20px;
+}
+
+/* Game Title */
+.game-title {
+  font-size: 36px;
+  color: white;
+}
+
+/* Game Board */
+.game-board {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1; /* Allow the game board to take available space */
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px;
+}
+
+/* Cells */
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #222;
+  border-radius: 4px;
+}
+
+.snake {
+  background-color: green;
+}
+
+.food {
+  background-color: red;
+}
+
+.obstacle {
+  background-color: gray;
+}
+
+/* Restart Button */
+.restart-container {
+  position: absolute;
+  top: 50px;
+  left: 20px;
+}
+
+.restart-button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background-color: #45a049;
+}
+
+/* Controller (Directional Buttons) */
+.controller {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px; /* Space for controller */
+}
+
+.middle-row {
+  display: flex;
+}
+
+.control-button {
+  background-color: #444;
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.control-button:hover {
+  background-color: #555;
+}
+
+/* Directional Control Button Positioning */
+.up {
+  margin-bottom: 8px;
+}
+
+.left,
+.right {
+  width: 100px;
+}
+
+.left {
+  margin-right: 100px;
+}
+
+.right {
+  margin-left: 5px;
+}
+
+.down {
+  margin-top: -50px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .game-board {
+    display: block;
+  }
+
+  .control-button {
+    font-size: 20px;
+    padding: 20px;
   }
 }

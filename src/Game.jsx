@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaArrowUp, FaArrowDown, FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Import icons
 import './Game.css'; // Import the CSS file
 
 const Game = () => {
@@ -194,6 +195,24 @@ const Game = () => {
           <button onClick={restartGame} className="restart-button">Restart</button>
         </div>
       )}
+
+      {/* Directional Control Buttons */}
+      <div className="controller">
+        <button onClick={() => direction !== 'DOWN' && setDirection('UP')} className="control-button up">
+          <FaArrowUp />
+        </button>
+        <div className="middle-row">
+          <button onClick={() => direction !== 'RIGHT' && setDirection('LEFT')} className="control-button left">
+            <FaArrowLeft />
+          </button>
+          <button onClick={() => direction !== 'LEFT' && setDirection('RIGHT')} className="control-button right">
+            <FaArrowRight />
+          </button>
+        </div>
+        <button onClick={() => direction !== 'UP' && setDirection('DOWN')} className="control-button down">
+          <FaArrowDown />
+        </button>
+      </div>
     </div>
   );
 };
